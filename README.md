@@ -41,7 +41,7 @@ Sử dụng trên hệ điều hành CentOS 7
 
 Thực hiện bằng user với quyền sudo hoặc người dùng root
 
-## Bước 1: Cài đặt các gói cần thiết
+### Bước 1: Cài đặt các gói cần thiết
 
 Ta kiểm tra xem đã có version 3 của python được cài trong máy chưa. 
 
@@ -60,7 +60,7 @@ pip3 install virtualenv
 yum install -y git curl 
 ```
 
-## Bước 2: Tải về source code
+### Bước 2: Tải về source code
 
 ```
 cd /opt
@@ -68,7 +68,7 @@ git clone https://github.com/hungviet99/CheckIP.git
 cd CheckIP/
 ```
 
-### Chỉnh sửa file config.py
+#### Chỉnh sửa file config.py
 
 - Thay token bot telegram
 
@@ -92,16 +92,16 @@ sed -i 's/ApiKeyShodan =/ApiKeyShodan = "1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl"/' /op
 
 Nếu bạn có API khác thì hãy thay `1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl` bằng API của bạn.
 
-## Bước 3: Tạo venv 
+### Bước 3: Tạo venv 
 
-### Tạo môi trường ảo python 
+#### Tạo môi trường ảo python 
 
 ```
 cd /opt/CheckIP
 virtualenv env -p python3.6
 source env/bin/activate
 ```
-### Cài đặt requirement 
+#### Cài đặt requirement 
 
 ```
 pip install -r requirements.txt
@@ -114,9 +114,9 @@ curl https://api.hackertarget.com/dnslookup/?q=hackertarget.com&apikey=plmoknijb
 ```
 Có thể sử dụng `Enter` để đẩy nhanh quá trình chạy.
 
-## Bước 4: Tạo file service để chương trình chạy như 1 dịch vụ 
+### Bước 4: Tạo file service để chương trình chạy như 1 dịch vụ 
 
-### Tạo file service
+#### Tạo file service
 
 ```
 vi /etc/systemd/system/checkip.service
@@ -139,7 +139,7 @@ ExecStart=/opt/CheckIP/env/bin/python3 /opt/CheckIP/messagebot.py --serve-in-for
 WantedBy=multi-user.target
 ```
 
-### Khởi động dich vụ checkip
+#### Khởi động dich vụ checkip
 
 ```
 systemctl daemon-reload
