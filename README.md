@@ -32,7 +32,7 @@ Tool có các chức năng khi thao tác trên telegram như :
 
 Một số chức năng đang được phát triển như  : 
 
-- [] Truyền vào địa chỉ IP, hiển thị hệ điều hành đang chạy trên IP đó.
+- [ ] Truyền vào địa chỉ IP, hiển thị hệ điều hành đang chạy trên IP đó.
 
 
 Sử dụng trên hệ điều hành CentOS 7 
