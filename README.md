@@ -119,7 +119,7 @@ WantedBy=multi-user.target
 
 ```
 systemctl daemon-reload
-systemctl start sshalert.service
-systemctl status sshalert.service
-systemctl enable sshalert.service
+systemctl start checkip
+systemctl status checkip
+systemctl enable checkip
 ```
