@@ -1,15 +1,21 @@
 # Cấu hình 
 
-## Mô tả : 
+## Giới thiệu : 
+
+
+
+
+## Mô tả: 
+
 Tool có các chức năng như : 
 
-- Truyền vào địa chỉ IP check port và service chạy trên port đó 
+- [x] Truyền vào địa chỉ IP check port và service chạy trên port đó 
 
-- Truyền vào địa chỉ IP kiểm tra nếu có CVE
+- [x] Truyền vào địa chỉ IP kiểm tra nếu có CVE
 
-- Truyền vào địa chỉ IP hiển thị những Domain đang được trỏ đến IP đó. ( 1 Ngày tối đa 20 lần)
+- [x] Truyền vào địa chỉ IP hiển thị những Domain đang được trỏ đến IP đó. ( 1 Ngày tối đa 20 lần)
 
-- Truyền vào địa chỉ IP hoặc domain, hiển thị thông tin về IP hoặc Domain đó. 
+- [x] Truyền vào địa chỉ IP hoặc domain, hiển thị thông tin về IP hoặc Domain đó. 
 
 Sử dụng trên hệ điều hành CentOS 7 
 
