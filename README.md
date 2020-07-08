@@ -41,17 +41,15 @@ Sử dụng trên hệ điều hành CentOS 7
 
 Thực hiện bằng user với quyền sudo hoặc người dùng root
 
+## Bước 1: Cài đặt các gói cần thiết
+
 Ta kiểm tra xem đã có version 3 của python được cài trong máy chưa. 
 
 ```
 python3 --version
 ```
 
-Nếu chưa có phiên bản python 3 trong máy, thực hiện cài đặt python3 
-
-
-
-Cài đặt các gói cần thiết 
+Thực hiện cài đặt python3 và các gói cần thiết.
 
 ```
 yum groupinstall "Development Tools" -y
@@ -62,9 +60,7 @@ pip3 install virtualenv
 yum install -y git curl 
 ```
 
-Để sử dụng được chương trình này chạy như 1 tiến trình của hệ thống, ta làm như sau : 
-
-## Bước 1: Tải về source code
+## Bước 2: Tải về source code
 
 ```
 cd /opt
@@ -96,7 +92,7 @@ sed -i 's/ApiKeyShodan =/ApiKeyShodan = "1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl"/' /op
 
 Nếu bạn có API khác thì hãy thay `1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl` bằng API của bạn.
 
-## Tạo venv 
+## Bước 3: Tạo venv 
 
 ### Tạo môi trường ảo python 
 
@@ -117,7 +113,9 @@ Chạy lệnh sau để nhập api hackertaget vào hệ thống.
 curl https://api.hackertarget.com/dnslookup/?q=hackertarget.com&apikey=plmoknijbuhvygvtrgedsfghhhhkjhkhfsk
 ```
 
-### Tạo file service 
+## Bước 4: Tạo file service để chương trình chạy như 1 dịch vụ 
+
+### Tạo file service
 
 ```
 vi /etc/systemd/system/checkip.service
@@ -140,7 +138,7 @@ ExecStart=/opt/CheckIP/env/bin/python3 /opt/CheckIP/messagebot.py --serve-in-for
 WantedBy=multi-user.target
 ```
 
-### Khởi động dich vụ sshalert 
+### Khởi động dich vụ checkip
 
 ```
 systemctl daemon-reload
