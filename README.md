@@ -112,6 +112,7 @@ Chạy lệnh sau để nhập api hackertaget vào hệ thống.
 ```
 curl https://api.hackertarget.com/dnslookup/?q=hackertarget.com&apikey=plmoknijbuhvygvtrgedsfghhhhkjhkhfsk
 ```
+Có thể sử dụng `Enter` để đẩy nhanh quá trình chạy.
 
 ## Bước 4: Tạo file service để chương trình chạy như 1 dịch vụ 
 
