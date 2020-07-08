@@ -59,7 +59,7 @@ Thay `918364925:AAGbl5y7463f8DFFx4RhkeB3_eRhUUNfHHw` bằng token bot của bạ
 
 - Lấy API của shodan  
 
-Nếu bạn không có API của shodan, có thể đăng nhập vào shodan theo đường link sau : [Shodan login](https://account.shodan.io/login) và truy cập vào [API shodan](https://account.shodan.io/) để lấy API key của shodan. 
+Nếu bạn không có API của shodan, có thể đăng nhập vào shodan theo đường link sau : [Shodan login](https://account.shodan.io/login). Sau khi đăng nhập, truy cập vào [API shodan](https://account.shodan.io/) để lấy API key của shodan. 
 
 Hoặc bạn có thể sử dụng api sau: `1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl`
 
@@ -68,6 +68,7 @@ Hoặc bạn có thể sử dụng api sau: `1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl`
 ```
 sed -i 's/ApiKeyShodan =/ApiKeyShodan = "1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl"/' /opt/CheckIP/config.py
 ```
+
 Nếu bạn có API khác thì hãy thay `1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl` bằng API của bạn.
 
 ## Tạo venv 
