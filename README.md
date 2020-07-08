@@ -1,6 +1,15 @@
 # Cấu hình 
 
-Tool sử dụng để check port, CVE, kiểm tra thông tin của IP, Domain và xem reverseip. 
+## Mô tả : 
+Tool có các chức năng như : 
+
+- Truyền vào địa chỉ IP check port và service chạy trên port đó 
+
+- Truyền vào địa chỉ IP kiểm tra nếu có CVE
+
+- Truyền vào địa chỉ IP hiển thị những Domain đang được trỏ đến IP đó. ( 1 Ngày tối đa 20 lần)
+
+- Truyền vào địa chỉ IP hoặc domain, hiển thị thông tin về IP hoặc Domain đó. 
 
 Sử dụng trên hệ điều hành CentOS 7 
 
@@ -21,13 +30,11 @@ Cài đặt các gói cần thiết
 
 ```
 yum groupinstall "Development Tools" -y
-yum install https://centos7.iuscommunity.org/ius-release.rpm -y
-yum install python-devel -y
-yum install python36-devel -y
-yum install python36 -y
-yum install python-pip -y
-yum install python36u-pip -y
-pip3.6 install virtualenv==16.7.9
+yum install python3-devel -y
+yum install python3 -y
+yum install python3-pip -y
+pip3 install virtualenv
+yum install -y git curl 
 ```
 
 Để sử dụng được chương trình này chạy như 1 tiến trình của hệ thống, ta làm như sau : 
@@ -36,85 +43,81 @@ pip3.6 install virtualenv==16.7.9
 
 ```
 cd /opt
-mkdir checkip
-cd /
+git clone https://github.com/hungviet99/CheckIP.git
+cd CheckIP/
 ```
 
-### Tải về file `sshalert.py`: 
+### Chỉnh sửa file config.py
+
+- Thay token bot telegram
 
 ```
-wget https://raw.githubusercontent.com/hungviet99/Tools_and_Script/master/Tools/tool-check-accepted_ssh/sshalert.py
+sed -i 's/TOKEN =/TOKEN = "918364925:AAGbl5y7463f8DFFx4RhkeB3_eRhUUNfHHw"/' /opt/CheckIP/config.py
 ```
 
-### Chỉnh sửa file như sau : 
+Thay `918364925:AAGbl5y7463f8DFFx4RhkeB3_eRhUUNfHHw` bằng token bot của bạn 
 
-#### Nhập vào file `Token ID` của Bot Telegram
+- Lấy API của shodan  
 
-```
-sed -i 's/#TOKEN =/TOKEN = "918364925:AAGbl5y7463f8DFFx4RhkeB3_eRhUUNfHHw"/' /etc/sshalert/sshalert.py
-```
+Nếu bạn không có API của shodan, có thể đăng nhập vào shodan theo đường link sau : [Shodan login](https://account.shodan.io/login) và truy cập vào [API shodan](https://account.shodan.io/) để lấy API key của shodan. 
 
-**Lưu ý:** Thay giá trị `918364925:AAGbl5y7463f8DFFx4RhkeB3_eRhUUNfHHw` bằng token ID của bạn. 
+Hoặc bạn có thể sử dụng api sau: `1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl`
 
-#### Nhập vào message ID của Group trong telegram hoặc ID của bạn 
+- Thêm API của shodan vào file config. 
 
 ```
-sed -i 's|#CHAT_ID =|CHAT_ID = -468923562|' /etc/sshalert/sshalert.py
+sed -i 's/ApiKeyShodan =/ApiKeyShodan = "1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl"/' /opt/CheckIP/config.py
 ```
-**Lưu ý:** Thay ID chat `-468923562` bằng ID chat của bạn. 
+Nếu bạn có API khác thì hãy thay `1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl` bằng API của bạn.
 
+## Tạo venv 
 
-## Tải về file service
-
-### Tải file 
-
-#### Đối với CentOS
+### Tạo môi trường ảo python 
 
 ```
-cd /usr/lib/systemd/system
+cd /opt/CheckIP
+virtualenv env -p python3.6
+source env/bin/activate
 ```
-```
-wget https://raw.githubusercontent.com/hungviet99/Tools_and_Script/master/Tools/tool-check-accepted_ssh/sshalert.service
-```
-
-#### Đối với Ubuntu
+### Cài đặt requirement 
 
 ```
-cd /etc/systemd/system
+pip install -r requirements.txt
 ```
 
-```
-wget https://raw.githubusercontent.com/hungviet99/Tools_and_Script/master/Tools/tool-check-accepted_ssh/sshalert.service
-```
-
-### Chỉnh sửa file `sshalert.service`
-
-Hiển thị đường dẫn tới Python3
-```
-which python3
-```
-và sẽ có kết quả tương tự như sau : 
+Chạy lệnh sau để nhập api hackertaget vào hệ thống. 
 
 ```
-/bin/python3
+curl https://api.hackertarget.com/dnslookup/?q=hackertarget.com&apikey=plmoknijbuhvygvtrgedsfghhhhkjhkhfsk
 ```
 
-Sau khi có được đường dẫn tới python3, ta tiến hành chỉnh sửa file `sshalert.service`
+### Tạo file service 
 
-Chỉnh sửa `/bin/python3` và thay bằng đường dẫn hiển thị trên máy bạn
+```
+vi /etc/systemd/system/checkip.service
+```
 
-#### Trên CentOS: 
+và ghi vào file nội dung như sau : 
+
 ```
-sed -i 's|ExecStart=|ExecStart=/bin/python3 /etc/sshalert/sshalert.py|' /usr/lib/systemd/system/sshalert.service
-```
-#### Trên Ubuntu: 
-```
-sed -i 's|ExecStart=|ExecStart=/usr/bin/python3 /etc/sshalert/sshalert.py|' /etc/systemd/system/sshalert.service
+[Unit]
+Description= Check info IP or Domain
+After=network.target
+
+[Service]
+PermissionsStartOnly=True
+User=root
+Group=root
+ExecStart=/opt/CheckIP/env/bin/python3 /opt/CheckIP/messagebot.py --serve-in-foreground
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 ### Khởi động dich vụ sshalert 
 
 ```
+systemctl daemon-reload
 systemctl start sshalert.service
 systemctl status sshalert.service
 systemctl enable sshalert.service
