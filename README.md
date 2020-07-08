@@ -2,35 +2,54 @@
 
 ## Giới thiệu : 
 
-
-
+Tool được viết với mục đích chính là check các thông số của 1 IP như port, người sở hữu, những bản ghi `A record` đang trỏ đến địa chỉ IP. 
 
 ## Mô tả: 
 
-Tool có các chức năng như : 
+Tool có các chức năng khi thao tác trên telegram như : 
 
-- [x] Truyền vào địa chỉ IP check port và service chạy trên port đó 
+- [x] Truyền vào địa chỉ IP check port của địa chỉ IP đó 
+
+    - Gửi về telegram thông tin về port, service chạy trên port đó và giao thức TCP hoặc UDP
 
 - [x] Truyền vào địa chỉ IP kiểm tra nếu có CVE
 
-- [x] Truyền vào địa chỉ IP hiển thị những Domain đang được trỏ đến IP đó. ( 1 Ngày tối đa 20 lần)
+    - Nếu có CVE sẽ gửi về telegram những CVE đó, nếu không có sẽ gửi về 1 tin nhắn báo trống
+
+- [x] Truyền vào địa chỉ IP hiển thị những Domain đang được trỏ đến IP đó
+
+    - Khi truyền vào địa chỉ IP trên tele, tool sẽ gửi về các bản ghi A record đang được trỏ đến địa chỉ IP đó. 
+
+    - Mỗi ngày chỉ được truy xuất tối đa 20 lần. 
 
 - [x] Truyền vào địa chỉ IP hoặc domain, hiển thị thông tin về IP hoặc Domain đó. 
 
+    - Truyền vào IP sẽ hiển thị thông tin cơ bản như người sở hữu, và thông tin liên hệ của người sở hữu IP đó. 
+
+    - Truyền vào Domain sẽ hiển thị thông tin như : Nhà đăng ký, ngày khởi tạo, ngày hết hạn, IPS. 
+
+    - Một số Domain có thể sẽ không hiển thị đầy đủ các thông tin như trên, nhưng chắc chắn sẽ có tên đầy đủ của domain, IPS.
+
+Một số chức năng đang được phát triển như  : 
+
+- [] Truyền vào địa chỉ IP, hiển thị hệ điều hành đang chạy trên IP đó.
+
+
 Sử dụng trên hệ điều hành CentOS 7 
+
+## Cài đặt 
 
 Thực hiện bằng user với quyền sudo hoặc người dùng root
 
-## Kiểm tra version Python trên máy
-
 Ta kiểm tra xem đã có version 3 của python được cài trong máy chưa. 
+
 ```
 python3 --version
 ```
 
 Nếu chưa có phiên bản python 3 trong máy, thực hiện cài đặt python3 
 
-**Đối với CentOS:** 
+
 
 Cài đặt các gói cần thiết 
 
