@@ -1,0 +1,5 @@
+pyTelegramBotAPI==3.7.1
+python-nmap==0.6.1
+python-telegram-bot==12.8
+requests==2.21.0
+shodan==1.23.0
