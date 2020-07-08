@@ -35,9 +35,9 @@ Một số chức năng đang được phát triển như  :
 - [ ] Truyền vào địa chỉ IP, hiển thị hệ điều hành đang chạy trên IP đó.
 
 
-Sử dụng trên hệ điều hành CentOS 7 
-
 ## Cài đặt 
+
+Cài đặt trên hệ điều hành CentOS 7 
 
 Thực hiện bằng user với quyền sudo hoặc người dùng root
 
