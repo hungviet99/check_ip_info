@@ -199,7 +199,7 @@ Truyền vào địa chỉ IP sẽ hiển thị được thông tin về ngườ
 Ví dụ : 
 
 ```
-/info 104.105.106
+/info 103.104.105.106
 ```
 
 ![Imgur](https://i.imgur.com/dM4KQjV.png)
