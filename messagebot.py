@@ -83,12 +83,15 @@ def info_ip(ipaddr):
     payload = {"format":"json","domain":"{}" .format(ipaddr)}
     response1 = requests.request("GET", config.url, params=payload, headers=config.headers)
     InfIP = response1.json()
-    ContactName = InfIP['contacts']['admin'][0]['name']
-    ContactAddr = InfIP['contacts']['admin'][0]['address']
-    ContactPhone = InfIP['contacts']['admin'][0]['phone']
-    INFO_IP = 'Người sở hữu: ' + ContactName + '\n\n' 
-    INFO_IP = INFO_IP + 'Địa Chỉ : ' + ContactAddr + '\n\n' 
-    INFO_IP = INFO_IP + 'Số điện thoại: ' + ContactPhone
+    try:
+        ContactName = InfIP['contacts']['admin'][0]['name']
+        ContactAddr = InfIP['contacts']['admin'][0]['address']
+        ContactPhone = InfIP['contacts']['admin'][0]['phone']
+        INFO_IP = 'Người sở hữu: ' + ContactName + '\n\n' 
+        INFO_IP = INFO_IP + 'Địa Chỉ : ' + ContactAddr + '\n\n' 
+        INFO_IP = INFO_IP + 'Số điện thoại: ' + ContactPhone
+    except:
+        INFO_IP = "Không có thông tin về người sở hữu IP này"
     return INFO_IP
 
 # Lấy thông tin về domain
@@ -203,7 +206,6 @@ if __name__ == "__main__":
         """
         IP_Domain = message.text[6:]
         SameIP = ReIP.match(IP_Domain)
-        print(IP_Domain)
         if SameIP: 
             mess = info_ip(IP_Domain)
             string_infip = str(mess)
