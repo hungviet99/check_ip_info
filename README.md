@@ -1,41 +1,28 @@
 # CheckIP
 
-## Giới thiệu : 
+## 1. Giới thiệu : 
 
 Tool được viết với mục đích chính là check các thông số của 1 IP như port, người sở hữu, những bản ghi `A record` đang trỏ đến địa chỉ IP. 
 
-## Mô tả: 
+## 2. Các tính năng
 
 Tool có các chức năng khi thao tác trên telegram như : 
 
-- [x] Truyền vào địa chỉ IP check port của địa chỉ IP đó 
+- [x] Chek port
 
-    - Gửi về telegram thông tin về port, service chạy trên port đó và giao thức TCP hoặc UDP
+- [x] Check CVE
 
-- [x] Truyền vào địa chỉ IP kiểm tra nếu có CVE
+- [x] Check Reverse IP 
 
-    - Nếu có CVE sẽ gửi về telegram những CVE đó, nếu không có sẽ gửi về 1 tin nhắn báo trống
-
-- [x] Truyền vào địa chỉ IP hiển thị những Domain đang được trỏ đến IP đó
-
-    - Khi truyền vào địa chỉ IP trên tele, tool sẽ gửi về các bản ghi A record đang được trỏ đến địa chỉ IP đó. 
-
-    - Mỗi ngày chỉ được truy xuất tối đa 20 lần. 
-
-- [x] Truyền vào địa chỉ IP hoặc domain, hiển thị thông tin về IP hoặc Domain đó. 
-
-    - Truyền vào IP sẽ hiển thị thông tin cơ bản như người sở hữu, và thông tin liên hệ của người sở hữu IP đó. 
-
-    - Truyền vào Domain sẽ hiển thị thông tin như : Nhà đăng ký, ngày khởi tạo, ngày hết hạn, IPS. 
-
-    - Một số Domain có thể sẽ không hiển thị đầy đủ các thông tin như trên, nhưng chắc chắn sẽ có tên đầy đủ của domain, IPS.
+- [x] Check Info IP & Domain
 
 Một số chức năng đang được phát triển như  : 
 
-- [ ] Truyền vào địa chỉ IP, hiển thị hệ điều hành đang chạy trên IP đó.
+- [ ] Ckeck hệ điều hành khi truyền vào địa chỉ IP 
 
+- [ ] 
 
-## Cài đặt 
+## 3. Cài đặt 
 
 Cài đặt trên hệ điều hành CentOS 7 
 
@@ -147,3 +134,72 @@ systemctl start checkip
 systemctl status checkip
 systemctl enable checkip
 ```
+
+## 4. Demo 
+
+Để xem hướng dẫn sử dụng trước khi bắt đầu thao tác với bot, hãy nhập `/start`
+
+![Imgur](https://i.imgur.com/P5fkAbM.png)
+
+### Check Port
+Khi truyền vào địa chỉ IP, lấy các port đang sử dụng của địa chỉ IP đó cùng với các service và các giao thức TCP hoặc UDP 
+
+Ví dụ: Mình sẽ sử dụng lệnh sau để kiểm tra các port đang sử dụng trên IP `216.58.200.78`:
+
+```
+/port 216.58.200.78
+```
+
+![Imgur](https://i.imgur.com/pHb7J8M.png)
+
+### Check CVE
+
+Khi truyền vào địa chỉ IP, tool sẽ kiểm tra xem có CVE hay không.
+
+Khi mình sử dụng lệnh `/cve 216.58.200.78`, nếu không tra ra CVE nào sẽ hiển thị 1 thông báo như sau: 
+
+![Imgur](https://i.imgur.com/0vdKKH3.png)
+
+Khi có CVE thì các CVE đó sẽ được gửi về telegram như sau :
+
+![Imgur](https://i.imgur.com/ORfQP7F.png)
+
+### Check Reverseip 
+
+Khi truyền vào địa chỉ IP hiển thị những bản ghi `A record` đang trỏ đến địa chỉ IP đó. 
+
+Mỗi ngày chỉ được truy xuất tối đa 20 lần
+
+Ví dụ: Mình muốn hiển thị reverseip của địa chỉ `103.101.161.33`
+
+```
+/reverseip 103.101.161.33
+```
+
+![Imgur](https://i.imgur.com/13CcJAY.png)
+
+### Check info
+
+#### Info Domain
+
+Truyền vào Domain sẽ hiển thị các thông tin của domain như : Nhà đăng ký, ngày khởi tạo, ngày hết hạn, name server, IPS. 
+
+Ví dụ : 
+
+```
+/info hungnv99.com
+```
+
+![Imgur](https://i.imgur.com/XJVUtG2.png)
+
+#### Info IP 
+
+Truyền vào địa chỉ IP sẽ hiển thị được thông tin về người sở hữu và thông tin liên hệ của người sở hữu đó.
+
+Ví dụ : 
+
+```
+/info 104.105.106
+```
+
+![Imgur](https://i.imgur.com/dM4KQjV.png)
