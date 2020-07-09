@@ -20,8 +20,6 @@ Một số chức năng đang được phát triển như  :
 
 - [ ] Ckeck hệ điều hành khi truyền vào địa chỉ IP 
 
-- [ ] 
-
 ## 3. Cài đặt 
 
 Cài đặt trên hệ điều hành CentOS 7 
