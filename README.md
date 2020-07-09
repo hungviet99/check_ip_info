@@ -2,7 +2,9 @@
 
 ## 1. Giới thiệu : 
 
-Tool được viết với mục đích chính là check các thông số của 1 IP như port, người sở hữu, những bản ghi `A record` đang trỏ đến địa chỉ IP. 
+Để thuận tiện cho việc kiểm tra Port từ 1 địa chỉ IP hoặc tra cứu thông tin của IP, domain. Mình đã phát triển 1 tool để thực hiện các thao tác tra cứu trực tiếp với bot trên telegram. 
+
+Rất dễ dàng để có thể sử dụng, chỉ cần có 1 bot telegram và 1 server chạy CentOS 7, bạn có thể dựng cho mình 1 con bot để check info và sử dụng nó. 
 
 ## 2. Các tính năng
 
