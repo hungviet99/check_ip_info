@@ -2,7 +2,7 @@
 TOKEN = 
 
 # API shodan
-ApiKeyShodan = 
+API_SHODAN = 
 
 # API rapidapi
 url = "https://checkport.p.rapidapi.com/"
