@@ -7,7 +7,7 @@ import config
 
 bot = telebot.TeleBot(config.TOKEN)
 
-api = shodan.Shodan(config.ApiKeyShodan) 
+api = shodan.Shodan(config.API_SHODAN) 
 
 # Regex địa chỉ IP
 regex_ip = re.compile("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")
