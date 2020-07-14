@@ -27,7 +27,7 @@ def list_port(ipaddr):
     """
 
     ip_info = api.host(ipaddr)
-    inf_data = ip_nfo['data']
+    inf_data = ip_info['data']
     info_port = "**" + 'Port' + " : " + 'Service' + " : " + 'Protocol' + "**" + '\n'
     try: 
         for data in inf_data: 
