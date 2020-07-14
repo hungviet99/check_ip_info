@@ -20,7 +20,7 @@ Tool có các chức năng khi thao tác trên telegram như :
 
 Một số chức năng đang được phát triển như  : 
 
-- [ ] Ckeck hệ điều hành khi truyền vào địa chỉ IP 
+- [x] Kiểm tra port và gửi mail 
 
 ## 3. Cài đặt 
 

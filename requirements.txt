@@ -3,3 +3,4 @@ python-nmap==0.6.1
 python-telegram-bot==12.8
 requests==2.21.0
 shodan==1.23.0
+yagmail==0.11.224
