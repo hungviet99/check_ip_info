@@ -1,4 +1,4 @@
-# CheckIP
+# Check IP Info
 
 ## 1. Giới thiệu : 
 
@@ -17,10 +17,6 @@ Tool có các chức năng khi thao tác trên telegram như :
 - [x] Check Reverse IP 
 
 - [x] Check Info IP & Domain
-
-Một số chức năng đang được phát triển như  : 
-
-- [x] Kiểm tra port và gửi mail 
 
 ## 3. Cài đặt 
 
@@ -51,8 +47,8 @@ yum install -y git curl
 
 ```
 cd /opt
-git clone https://github.com/hungviet99/CheckIP.git
-cd CheckIP/
+git clone https://github.com/hungviet99/check_ip_info.git
+cd check_ip_info/
 ```
 
 #### Chỉnh sửa file config.py
@@ -60,7 +56,7 @@ cd CheckIP/
 - Thay token bot telegram
 
 ```
-sed -i 's/TOKEN =/TOKEN = "918364925:AAGbl5y7463f8DFFx4RhkeB3_eRhUUNfHHw"/' /opt/CheckIP/config.py
+sed -i 's/TOKEN =/TOKEN = "918364925:AAGbl5y7463f8DFFx4RhkeB3_eRhUUNfHHw"/' /opt/check_ip_info/config.py
 ```
 
 Thay `918364925:AAGbl5y7463f8DFFx4RhkeB3_eRhUUNfHHw` bằng token bot của bạn 
@@ -74,7 +70,7 @@ Hoặc bạn có thể sử dụng api sau: `1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl`
 - Thêm API của shodan vào file config. 
 
 ```
-sed -i 's/API_SHODAN =/API_SHODAN = "1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl"/' /opt/CheckIP/config.py
+sed -i 's/API_SHODAN =/API_SHODAN = "1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl"/' /opt/check_ip_info/config.py
 ```
 
 Nếu bạn có API khác thì hãy thay `1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl` bằng API của bạn.
@@ -84,7 +80,7 @@ Nếu bạn có API khác thì hãy thay `1iyY8S7elAIY9P4i9ISZKUOV4DSBdQpl` bằ
 #### Tạo môi trường ảo python 
 
 ```
-cd /opt/CheckIP
+cd /opt/check_ip_info
 virtualenv env -p python3.6
 source env/bin/activate
 ```
@@ -106,7 +102,7 @@ Có thể sử dụng `Enter` để đẩy nhanh quá trình chạy.
 #### Tạo file service
 
 ```
-vi /etc/systemd/system/checkip.service
+vi /etc/systemd/system/ipinfo.service
 ```
 
 và ghi vào file nội dung như sau : 
@@ -120,19 +116,19 @@ After=network.target
 PermissionsStartOnly=True
 User=root
 Group=root
-ExecStart=/opt/CheckIP/env/bin/python3 /opt/CheckIP/messagebot.py --serve-in-foreground
+ExecStart=/opt/check_ip_info/env/bin/python3 /opt/check_ip_info/messagebot.py --serve-in-foreground
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-#### Khởi động dich vụ checkip
+#### Khởi động dich vụ check_ip_info
 
 ```
 systemctl daemon-reload
-systemctl start checkip
-systemctl status checkip
-systemctl enable checkip
+systemctl start ipinfo
+systemctl status ipinfo
+systemctl enable ipinfo
 ```
 
 ## 4. Demo 
