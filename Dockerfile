@@ -7,8 +7,8 @@ RUN yum install python3-devel python3 python3-pip -y
 RUN pip3 install virtualenv
 RUN yum install -y git curl
 
-COPY . /opt/check_ip_info/
-WORKDIR /opt/check_ip_info
+COPY ./src /opt/check_ip_info
+WORKDIR /opt/check_ip_info/
 
 RUN pip3 install -r requirements.txt
 RUN sed -i 's/TOKEN =/TOKEN = "1126478322:AAFsn68ebrizoL50DKYtFQIlvUel6DpTmTc"/' /opt/check_ip_info/config.py
