@@ -1,0 +1,12 @@
+[Unit]
+Description= Check info IP or Domain
+After=network.target
+
+[Service]
+PermissionsStartOnly=True
+User=root
+Group=root
+ExecStart=/usr/bin/python3 /opt/check_ip_info/messagebot.py --serve-in-foreground
+
+[Install]
+WantedBy=multi-user.target
