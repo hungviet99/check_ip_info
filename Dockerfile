@@ -15,5 +15,4 @@ RUN sed -i 's/TOKEN =/TOKEN = "1126478322:AAFsn68ebrizoL50DKYtFQIlvUel6DpTmTc"/'
 RUN sed -i 's/API_SHODAN =/API_SHODAN = "uwy2MOj0yGpigf30zAcEABtl4SFcSe7M"/' /opt/check_ip_info/config.py
 RUN curl https://api.hackertarget.com/dnslookup/?q=hackertarget.com&apikey=plmoknijbuhvygvtrgedsfghhhhkjhkhfsk 
 
-RUN mv /opt/check_ip_info/ipinfo.service /etc/systemd/system/ipinfo.service
-RUN systemctl daemon-reload && systemctl enable ipinfo --now
+CMD python3 /opt/check_ip_info/messagebot.py
